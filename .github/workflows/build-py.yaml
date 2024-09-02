@@ -11,13 +11,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
+      # Add support for more platforms with QEMU (optional)
+      # https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
       
-      - uses: actions/cache@v4
-        id: use-cache
-        with:
-          path: |
-            /home/runner/.cache/pip
-          key: ${{ github.repository }}-python-${{ hashFiles('requirements.txt') }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+    
 
       - name: Build and push
         uses: docker/build-push-action@v6

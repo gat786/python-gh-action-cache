@@ -9,6 +9,8 @@ jobs:
   build-python:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: build docker image
         shell: bash
         run: docker build . --build-arg cache_dir=$(python -m pip cache dir)

@@ -21,4 +21,4 @@ jobs:
 
       - name: build docker image
         shell: bash
-        run: docker build . --build-arg cache_dir=$(/home/runner/.cache/pip)
+        run: docker build . --build-arg cache_dir="/home/runner/.cache/pip"

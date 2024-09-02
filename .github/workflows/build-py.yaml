@@ -19,6 +19,9 @@ jobs:
             /home/runner/.cache/pip
           key: ${{ github.repository }}-python-${{ hashFiles('requirements.txt') }}
 
-      - name: build docker image
-        shell: bash
-        run: docker build . --build-arg cache_dir="/home/runner/.cache/pip"
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

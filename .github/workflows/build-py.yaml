@@ -11,6 +11,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      
+      - uses: actions/cache@v4
+        id: use-cache
+        with:
+          path: |
+            /home/runner/.cache/pip
+          key: ${{ github.repository }}-python-${{ hashFiles('requirements.txt') }}
+
       - name: build docker image
         shell: bash
-        run: docker build . --build-arg cache_dir=$(python -m pip cache dir)
+        run: docker build . --build-arg cache_dir=$(/home/runner/.cache/pip)

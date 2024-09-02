@@ -1,0 +1,14 @@
+name: Build python with cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-python:
+    runs-on: ubuntu
+    steps:
+      - name: build docker image
+        shell: bash
+        run: docker build . --build-arg cache_dir=$(python -m pip cache dir)

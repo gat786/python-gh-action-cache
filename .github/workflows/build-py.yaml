@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-python:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: build docker image
         shell: bash
